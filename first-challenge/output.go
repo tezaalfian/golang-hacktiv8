@@ -13,6 +13,9 @@ func main() {
 	// menampilkan nilai boolean j : true
 	j := true
 	fmt.Printf("%v \n", j)
+	// menampilkan nilai boolean j : false
+	j = false
+	fmt.Printf("%v \n", j)
 	// menampilkan unicode russia : Я (ya)
 	fmt.Printf("%c\n", '\u042F')
 	// menampilkan nilai base 10 : 21
