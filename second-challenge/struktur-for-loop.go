@@ -13,10 +13,11 @@ func main() {
 		j++
 	}
 
-	str := "CIAIШAIPIBIО"
-	for i := 0; i < len(str); i++ {
+	str := "C A Ш A P B О"
+	runeStr := []rune(str)
+	for i := 0; i < len(runeStr); i++ {
 		if i%2 == 0 {
-			fmt.Printf("character U+%04X '%c' starts at byte position %d\n", str[i], str[i], i)
+			fmt.Printf("character %U '%c' starts at byte position %d\n", runeStr[i], runeStr[i], i)
 		}
 	}
 
