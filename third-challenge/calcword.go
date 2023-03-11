@@ -12,6 +12,7 @@ func main() {
 
 	// Hitung jumlah kemunculan setiap huruf
 	for _, c := range kata {
+		fmt.Println(string(c))
 		if string(c) == " " {
 			continue
 		}
