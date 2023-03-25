@@ -8,6 +8,16 @@ import (
 	"net/http"
 )
 
+// CreateBook creates a new book
+// @Summary Create a new book
+// @Description Create a new book
+// @Tags books
+// @Accept  json
+// @Produce  json
+// @Param book body models.Book true "Book object"
+// @Success 201 {object} models.Book
+// @Failure 400 {object} string
+// @Router /books [post]
 func CreateBook(ctx *gin.Context) {
 	var book models.Book
 
@@ -25,6 +35,17 @@ func CreateBook(ctx *gin.Context) {
 	})
 }
 
+// UpdateBook updates a book
+// @Summary Update a book
+// @Description Update a book
+// @Tags books
+// @Accept  json
+// @Produce  json
+// @Param id path string true "Book ID"
+// @Param book body models.Book true "Book object"
+// @Success 200 {object} models.Book
+// @Failure 400 {object} string
+// @Router /books/{id} [put]
 func UpdateBook(ctx *gin.Context) {
 	id := ctx.Param("id")
 	var updatedBook models.Book
@@ -44,6 +65,16 @@ func UpdateBook(ctx *gin.Context) {
 	})
 }
 
+// GetBook gets a book
+// @Summary Get a book
+// @Description Get a book
+// @Tags books
+// @Accept  json
+// @Produce  json
+// @Param id path string true "Book ID"
+// @Success 200 {object} models.Book
+// @Failure 400 {object} string
+// @Router /books/{id} [get]
 func GetBook(ctx *gin.Context) {
 	id := ctx.Param("id")
 	var book models.Book
@@ -57,6 +88,15 @@ func GetBook(ctx *gin.Context) {
 	})
 }
 
+// GetAllBooks gets all books
+// @Summary Get all books
+// @Description Get all books
+// @Tags books
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} []models.Book
+// @Failure 400 {object} string
+// @Router /books [get]
 func GetAllBooks(ctx *gin.Context) {
 	var books []models.Book
 	err := database.GetDB().Find(&books).Error
@@ -70,6 +110,16 @@ func GetAllBooks(ctx *gin.Context) {
 	})
 }
 
+// DeleteBook deletes a book
+// @Summary Delete a book
+// @Description Delete a book
+// @Tags books
+// @Accept  json
+// @Produce  json
+// @Param id path string true "Book ID"
+// @Success 200 {object} string
+// @Failure 400 {object} string
+// @Router /books/{id} [delete]
 func DeleteBook(ctx *gin.Context) {
 	id := ctx.Param("id")
 	var book models.Book
