@@ -65,3 +65,56 @@ func UpdateProduct(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, Product)
 }
+
+func DeleteProduct(c *gin.Context) {
+	db := database.GetDB()
+	Product := models.Product{}
+
+	productId, _ := strconv.Atoi(c.Param("productId"))
+	Product.ID = uint(productId)
+
+	err := db.Debug().Delete(&Product).Error
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error":   "Bad request",
+			"message": err.Error(),
+		})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Product deleted successfully",
+	})
+}
+
+func GetProduct(c *gin.Context) {
+	db := database.GetDB()
+	Product := models.Product{}
+
+	productId, _ := strconv.Atoi(c.Param("productId"))
+	Product.ID = uint(productId)
+
+	err := db.Debug().Where("id = ?", productId).Take(&Product).Error
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error":   "Bad request",
+			"message": err.Error(),
+		})
+		return
+	}
+	c.JSON(http.StatusOK, Product)
+}
+
+func GetAllProducts(c *gin.Context) {
+	db := database.GetDB()
+	Products := []models.Product{}
+
+	err := db.Debug().Find(&Products).Error
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error":   "Bad request",
+			"message": err.Error(),
+		})
+		return
+	}
+	c.JSON(http.StatusOK, Products)
+}
