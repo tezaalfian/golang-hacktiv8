@@ -6,14 +6,15 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"log"
+	"os"
 )
 
 var (
-	host     = "localhost"
-	port     = "5432"
-	user     = "postgres"
-	password = "root"
-	dbname   = "go_gin_product"
+	host     = os.Getenv("PG_HOST")
+	port     = os.Getenv("PG_PORT")
+	user     = os.Getenv("PG_USER")
+	password = os.Getenv("PG_PASSWORD")
+	dbname   = os.Getenv("PG_DBNAME")
 	db       *gorm.DB
 	err      error
 )
